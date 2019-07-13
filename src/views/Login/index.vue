@@ -57,18 +57,19 @@ export default {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.$http
-            .post(
-              'http://ttapi.research.itcast.cn/mp/v1_0/authorizations',
-              this.loginForm
-            )
+            .post('http://ttapi.research.itcast.cn/mp/v1_0/authorizations', this.loginForm)
             .then(res => {
-              // 验证手机号验证码成功之后  服务器会发送一条token数据  需要吧数据存储起来并且跳转到首页
               console.log(res)
-              sessionStorage.setItem('token', JSON.stringify(res.data.data.token))
+
+              // 验证手机号验证码成功之后  服务器会发送一条token数据  需要吧数据存储起来并且跳转到首页
+              sessionStorage.setItem(
+                'token',
+                JSON.stringify(res.data.data.token)
+              )
               this.$router.push('/')
             })
             .catch(() => {
-              console.log(this.loginForm)
+              // console.log(this.loginForm)
               console.log('手机号或验证码错误')
             })
         }
