@@ -7,6 +7,8 @@ import router from './router'
 import ELEMENTUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import axios from '@/api/axios.js'
+import Component from '@/components/index.js'
+Vue.use(Component)
 Vue.prototype.$http = axios
 
 // 注册到vue实例上

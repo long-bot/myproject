@@ -7,6 +7,7 @@ import Login from '../views/Login/index.vue'
 import Home from '../views/home'
 import Welcome from '@/views/welcome'
 import NotFound from '@/views/NotFound'
+import Articles from '@/views/articles'
 // 注册到vue实例上
 Vue.use(VueRouter)
 
@@ -24,7 +25,12 @@ const router = new VueRouter({
       name: 'welcome',
       path: '/',
       component: Welcome
-    }]
+    },
+    {
+      name: 'articles',
+      path: '/article',
+      component: Articles
+    } ]
   },
 
   {
@@ -45,7 +51,9 @@ router.beforeEach((to, from, next) => {
   if (sessionStorage.getItem('token')) {
     return next()
   }
-  return next({ path: '/login' })
+  return next({
+    path: '/login'
+  })
 })
 // 导出router
 export default router

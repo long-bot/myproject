@@ -58,8 +58,8 @@
             <i class="el-icon-arrow-down el-icon--right"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item>个人设置</el-dropdown-item>
-            <el-dropdown-item>退出登录</el-dropdown-item>
+            <el-dropdown-item @click.native="setting">个人设置</el-dropdown-item>
+            <el-dropdown-item @click.native="logout">退出登录</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
       </el-header>
@@ -80,11 +80,23 @@ export default {
   },
   methods: {
     toggle () {
-      console.log(23)
       this.iscollapse = !this.iscollapse
       this.isShow = !this.isShow
       console.log(this.iscollapse)
+    },
+    // 个人设置
+    setting () {
+    // 跳转到个人设置页面
+      this.$router.push('/setting')
+    },
+    // 退出登录
+    logout () {
+      // 点击删除当前的sissionStorage的当前用户
+      sessionStorage.removeItem('token')
+      // 并且跳转到登录也
+      this.$router.push('/login')
     }
+
   }
 }
 </script>
@@ -107,7 +119,7 @@ export default {
   .home-aside {
     background-color: rgb(11, 11, 43);
     .show {
-      // background: url(../../assets/images/favicon.ico);
+      background: url(../../assets/images/favicon.png)no-repeat center / cover;
       background-size: 36px auto;
     }
   }
